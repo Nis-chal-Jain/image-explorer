@@ -14,7 +14,7 @@ function App() {
 
   useEffect(() => {
     img();
-  },[]);
+  }, []);
   useEffect(() => {
     if (imgurlarr.length > 0) {
       updateimg()
@@ -25,17 +25,17 @@ function App() {
     setcurr((curr) => (curr + 1))
     console.log(curr)
     console.log(imgurlarr)
-    if(!imgurlarr[curr+1]){
+    if (!imgurlarr[curr + 1]) {
       img()
     }
     updateimg()
   }
-  function prevcurr(){
-    if(curr>=0){
+  function prevcurr() {
+    if (curr >= 0) {
       setcurr((curr) => (curr - 1))
       updateimg()
     }
-    
+
   }
   async function img() {
     const data = await fetch(randRequesturl);
@@ -43,13 +43,13 @@ function App() {
     setimgurlarr((prevImgUrlArr) => [...prevImgUrlArr, dataJSON]);
     console.log(imgurlarr)
   }
-  function updateimg(){
+  function updateimg() {
     setimgurl(imgurlarr[curr].urls.raw);
-      setname(imgurlarr[curr].user.name);
-      setnamelink(imgurlarr[curr].user.links.html);
-      setabout(imgurlarr[curr].alt_description);
+    setname(imgurlarr[curr].user.name);
+    setnamelink(imgurlarr[curr].user.links.html);
+    setabout(imgurlarr[curr].alt_description);
   }
-  async function search(){
+  async function search() {
     await img()
     setcurr(imgurlarr.length)
   }
@@ -64,27 +64,27 @@ function App() {
                 type="text"
                 name="search"
                 id="search"
-                placeholder="search"
-                className=" border-none h-fit"
+                placeholder="Search"
+                className=" border-none h-fit px-2"
                 onChange={(event) => setRand(event.target.value)}
               />
               <input
                 type="button"
                 value="Submit"
                 onClick={search}
-                className=" bg-black text-white h-fit border-4 border-black cursor-pointer"
+                className=" bg-black text-white h-fit border-4 border-black cursor-pointer px-2"
               />
             </div>
           </div>
 
           <div className="flex flex-row">
-          <div className="another px-2   border-none h-[86vh] flex items-center">
+            <div className="another px-2   border-none h-[86vh] flex items-center">
               <input
                 type="button"
                 value="Prev"
                 onClick={prevcurr}
-                className=" text-2xl cursor-pointer "
-              />
+                className=" text-xl cursor-pointer rounded-lg px-4 py-2 hover:text-white hover:bg-gray-900 relative transition-colors duration-300 delay-100 border-gray-900 border-2"
+                />
             </div>
             <div className="mainimg">
               <img src={imgurl} alt="" className=" h-[85vh] shadow-2xl" />
@@ -102,7 +102,7 @@ function App() {
                 type="button"
                 value="Next"
                 onClick={changecur}
-                className=" text-2xl cursor-pointer "
+                className=" text-xl cursor-pointer rounded-lg px-4 py-2 hover:text-white hover:bg-gray-900 relative transition-colors duration-300 delay-100 border-gray-900 border-2"
               />
             </div>
           </div>
