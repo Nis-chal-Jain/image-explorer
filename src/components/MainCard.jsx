@@ -6,8 +6,10 @@ import {
   CardFooter,
   CardHeader,
 } from "../../components/ui/card";
+import { useEffect, useState } from "react";
 
 function MainCard({
+  curr,
   imgurl,
   namelink,
   name,
@@ -17,6 +19,15 @@ function MainCard({
   search,
   setRand,
 }) {
+  const [isdisabled,setdisabled]=useState(' ')
+  useEffect(()=>{
+    if(curr==0){
+      setdisabled("disabled")
+    }
+    else{
+      setdisabled("")
+    }
+  },[curr])
   return (
     <Card className="max-h-screen">
       <CardHeader>
@@ -36,7 +47,7 @@ function MainCard({
           <img
             src={imgurl}
             alt=""
-            className=" sm:h-[75vh] sm:w-auto w-screen"
+            className=" sm:h-[75vh] sm:max-h-none sm:w-auto w-screen max-h-[70vh]"
           />
           <p className="">
             Photo by{" "}
@@ -49,7 +60,7 @@ function MainCard({
         </div>
       </CardContent>
       <CardFooter className="flex justify-center gap-5">
-        <Button onClick={prevFunc}>&lt;Prev</Button>
+        <Button disabled={isdisabled} onClick={prevFunc}>&lt;Prev</Button>
         <Button onClick={nextFunc}>Next&gt;</Button>
       </CardFooter>
     </Card>

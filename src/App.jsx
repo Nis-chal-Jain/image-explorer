@@ -57,7 +57,7 @@ function App() {
 
   return (
     <>
-      <div className="flex justify-center items-center flex-col">
+      <div className="flex justify-center items-center flex-col max-h-screen">
         <MainCard
           about={about}
           name={name}
@@ -67,6 +67,7 @@ function App() {
           prevFunc={prevcurr}
           search={search}
           setRand={setRand}
+          curr={curr}
         />
       </div>
     </>
