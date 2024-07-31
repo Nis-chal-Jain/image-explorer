@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
+import { Button } from "../components/ui/button";
+import MainCard from "./components/MainCard";
 import "./App.css";
 
 function App() {
-  const [imgurlarr, setimgurlarr] = useState([])
-  const [curr, setcurr] = useState(0)
+  const [imgurlarr, setimgurlarr] = useState([]);
+  const [curr, setcurr] = useState(0);
   const [imgurl, setimgurl] = useState("");
   const [name, setname] = useState("");
   const [namelink, setnamelink] = useState("");
@@ -17,31 +19,30 @@ function App() {
   }, []);
   useEffect(() => {
     if (imgurlarr.length > 0) {
-      updateimg()
+      updateimg();
     }
   }, [imgurlarr]);
 
   function changecur() {
-    setcurr((curr) => (curr + 1))
-    console.log(curr)
-    console.log(imgurlarr)
+    setcurr((curr) => curr + 1);
+    console.log(curr);
+    console.log(imgurlarr);
     if (!imgurlarr[curr + 1]) {
-      img()
+      img();
     }
-    updateimg()
+    updateimg();
   }
   function prevcurr() {
     if (curr >= 0) {
-      setcurr((curr) => (curr - 1))
-      updateimg()
+      setcurr((curr) => curr - 1);
+      updateimg();
     }
-
   }
   async function img() {
     const data = await fetch(randRequesturl);
     const dataJSON = await data.json();
     setimgurlarr((prevImgUrlArr) => [...prevImgUrlArr, dataJSON]);
-    console.log(imgurlarr)
+    console.log(imgurlarr);
   }
   function updateimg() {
     setimgurl(imgurlarr[curr].urls.raw);
@@ -50,65 +51,23 @@ function App() {
     setabout(imgurlarr[curr].alt_description);
   }
   async function search() {
-    await img()
-    setcurr(imgurlarr.length)
+    await img();
+    setcurr(imgurlarr.length);
   }
 
   return (
     <>
-      <div className="body  flex justify-center items-center flex-col  max-h-screen">
-        <div className="main h-screen shadow-2xl">
-          <div className="flex flex-row gap-2 items-center justify-center">
-            <div className="search border-2 border-black m-2">
-              <input
-                type="text"
-                name="search"
-                id="search"
-                placeholder="Search"
-                className=" border-none h-fit px-2"
-                onChange={(event) => setRand(event.target.value)}
-              />
-              <input
-                type="button"
-                value="Submit"
-                onClick={search}
-                className=" bg-black text-white h-fit border-4 border-black cursor-pointer px-2"
-              />
-            </div>
-          </div>
-
-          <div className="flex flex-row">
-            <div className="another px-2   border-none h-[86vh] flex items-center">
-              <input
-                type="button"
-                value="Prev"
-                onClick={prevcurr}
-                className=" text-xl cursor-pointer rounded-lg px-4 py-2 hover:text-white hover:bg-gray-900 relative transition-colors duration-300 delay-100 border-gray-900 border-2"
-                />
-            </div>
-            <div className="mainimg">
-              <img src={imgurl} alt="" className=" h-[85vh] shadow-2xl" />
-              <p className="">
-                Photo by{" "}
-                <a href={namelink} className=" text-blue-500">
-                  {name}
-                </a>{" "}
-                on unsplash
-              </p>
-              <p>{about}</p>
-            </div>
-            <div className="another px-2   border-none h-[86vh] flex items-center">
-              <input
-                type="button"
-                value="Next"
-                onClick={changecur}
-                className=" text-xl cursor-pointer rounded-lg px-4 py-2 hover:text-white hover:bg-gray-900 relative transition-colors duration-300 delay-100 border-gray-900 border-2"
-              />
-            </div>
-          </div>
-
-
-        </div>
+      <div className="flex justify-center items-center flex-col">
+        <MainCard
+          about={about}
+          name={name}
+          namelink={namelink}
+          imgurl={imgurl}
+          nextFunc={changecur}
+          prevFunc={prevcurr}
+          search={search}
+          setRand={setRand}
+        />
       </div>
     </>
   );
