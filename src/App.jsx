@@ -18,24 +18,23 @@ function App() {
     img();
   }, []);
   useEffect(() => {
-    if (imgurlarr.length > 0) {
+    if (imgurlarr.length > curr) {
       updateimg();
     }
-  }, [imgurlarr]);
+  }, [imgurlarr,curr]);
 
-  function changecur() {
+  async function changecur() {
     setcurr((curr) => curr + 1);
     console.log(curr);
     console.log(imgurlarr);
     if (!imgurlarr[curr + 1]) {
-      img();
+      await img();
     }
     updateimg();
   }
   function prevcurr() {
     if (curr >= 0) {
       setcurr((curr) => curr - 1);
-      updateimg();
     }
   }
   async function img() {
