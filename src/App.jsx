@@ -6,7 +6,7 @@ import "./App.css";
 function App() {
   const [imgurlarr, setimgurlarr] = useState([]);
   const [curr, setcurr] = useState(0);
-  const [imgurl, setimgurl] = useState("");
+  const [imgurl, setimgurl] = useState("src/assets/loading.gif");
   const [name, setname] = useState("");
   const [namelink, setnamelink] = useState("");
   const unsplashAPIKey = import.meta.env.VITE_UNSPLASH_API_KEY;
@@ -28,9 +28,10 @@ function App() {
     console.log(curr);
     console.log(imgurlarr);
     if (!imgurlarr[curr + 1]) {
+      setimgurl("src/assets/loading.gif")
       await img();
     }
-    updateimg();
+    setimgurl("src/assets/loading.gif")
   }
   function prevcurr() {
     if (curr >= 0) {
