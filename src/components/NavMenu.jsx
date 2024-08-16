@@ -20,27 +20,46 @@ export default function Component({ setRand, search }) {
           <SheetContent side="left" className="sm:hidden">
             <nav className="grid gap-4 p-4">
               <NavLink
-                to="/favorites"
+                to="/"
                 className={({ isActive }) =>
                   `flex items-center gap-2 text-lg font-medium ${
-                    isActive ? "text-black" : "text-gray-500"
+                    isActive ? "text-black" : "text-gray-400"
                   }`
                 }
                 prefetch={false}
               >
-                <HeartIcon className="h-5 w-5" />
+                Home
+              </NavLink>
+              <NavLink
+                to="/favorites"
+                className={({ isActive }) =>
+                  `flex items-center gap-2 text-lg font-medium ${
+                    isActive
+                      ? `${setHeartColor("red")}text-black`
+                      : `${setHeartColor("none")}text-gray-400`
+                  }`
+                }
+                prefetch={false}
+              >
+                <HeartIcon heartcolor={heartcolor} className="h-5 w-5" />
                 Favorites
               </NavLink>
               <NavLink
                 to="collection"
                 className={({ isActive }) =>
                   `flex items-center gap-2 text-lg font-medium ${
-                    isActive ? "text-black" : "text-gray-500"
+                    isActive
+                      ? `${setcolcolor(true)}text-black`
+                      : `${setcolcolor(false)}text-gray-400`
                   }`
                 }
                 prefetch={false}
               >
-                <LayoutGridIcon className="h-5 w-5" />
+                {colcolor ? (
+                  <LayoutGridIconActive className="h-5 w-5" />
+                ) : (
+                  <LayoutGridIcon className="h-5 w-5" />
+                )}
                 Collection
               </NavLink>
             </nav>
@@ -61,12 +80,23 @@ export default function Component({ setRand, search }) {
       </div>
       <div className="hidden sm:flex items-center gap-4">
         <NavLink
+          to="/"
+          className={({ isActive }) =>
+            `flex items-center gap-2 text-lg font-medium my-auto ${
+              isActive ? "text-black" : "text-gray-400"
+            }`
+          }
+          prefetch={false}
+        >
+          Home
+        </NavLink>
+        <NavLink
           to="/favorites"
           className={({ isActive }) =>
             `flex items-center gap-2 text-lg font-medium ${
               isActive
                 ? `${setHeartColor("red")}text-black`
-                : `${setHeartColor("none")}text-gray-500`
+                : `${setHeartColor("none")}text-gray-400`
             }`
           }
           prefetch={false}
@@ -85,12 +115,11 @@ export default function Component({ setRand, search }) {
           }
           prefetch={false}
         >
-          {
-            colcolor?
-            <LayoutGridIconActive className="h-5 w-5"/>:
-            <LayoutGridIcon className="h-5 w-5"/>
-
-          }
+          {colcolor ? (
+            <LayoutGridIconActive className="h-5 w-5" />
+          ) : (
+            <LayoutGridIcon className="h-5 w-5" />
+          )}
           Collection
         </NavLink>
       </div>
