@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
-import { Button } from "../components/ui/button";
+import NavMenu from "./components/NavMenu";
 import MainCard from "./components/MainCard";
+import loading from "./assets/loading.gif"
 import "./App.css";
 
 function App() {
   const [imgurlarr, setimgurlarr] = useState([]);
   const [curr, setcurr] = useState(0);
-  const [imgurl, setimgurl] = useState("src/assets/loading.gif");
+  const [imgurl, setimgurl] = useState(loading);
   const [name, setname] = useState("");
   const [namelink, setnamelink] = useState("");
   const unsplashAPIKey = import.meta.env.VITE_UNSPLASH_API_KEY;
@@ -21,17 +22,17 @@ function App() {
     if (imgurlarr.length > curr) {
       updateimg();
     }
-  }, [imgurlarr,curr]);
+  }, [imgurlarr, curr]);
 
   async function changecur() {
     setcurr((curr) => curr + 1);
     console.log(curr);
     console.log(imgurlarr);
     if (!imgurlarr[curr + 1]) {
-      setimgurl("src/assets/loading.gif")
+      setimgurl(loading);
       await img();
     }
-    setimgurl("src/assets/loading.gif")
+    setimgurl(loading);
   }
   function prevcurr() {
     if (curr >= 0) {
@@ -57,7 +58,8 @@ function App() {
 
   return (
     <>
-      <div className="flex justify-center items-center flex-col max-h-screen">
+      <NavMenu search={search} setRand={setRand} />
+      <div className="flex justify-center items-center flex-col">
         <MainCard
           about={about}
           name={name}

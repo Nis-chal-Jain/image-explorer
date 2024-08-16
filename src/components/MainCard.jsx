@@ -1,55 +1,26 @@
-import { Input } from "../../components/ui/input";
 import { Button } from "../../components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-} from "../../components/ui/card";
+import { Card, CardContent, CardFooter } from "../../components/ui/card";
 import { useEffect, useState } from "react";
 
-function MainCard({
-  curr,
-  imgurl,
-  namelink,
-  name,
-  about,
-  nextFunc,
-  prevFunc,
-  search,
-  setRand,
-}) {
-  const [isdisabled,setdisabled]=useState(' ')
-  useEffect(()=>{
-    if(curr==0){
-      setdisabled("disabled")
+function MainCard({ curr, imgurl, namelink, name, about, nextFunc, prevFunc }) {
+  const [isdisabled, setdisabled] = useState(" ");
+  useEffect(() => {
+    if (curr == 0) {
+      setdisabled("disabled");
+    } else {
+      setdisabled("");
     }
-    else{
-      setdisabled("")
-    }
-  },[curr])
+  }, [curr]);
   return (
-    <Card className="max-h-screen">
-      <CardHeader>
-        <div className="flex w-full max-w-sm items-center space-x-2">
-          <Input
-            type="text"
-            placeholder="Search"
-            onChange={(event) => setRand(event.target.value)}
-          />
-          <Button type="submit" onClick={search}>
-            Submit
-          </Button>
-        </div>
-      </CardHeader>
+    <Card className="max-h-[90vh]">
       <CardContent className="flex justify-center">
         <div>
           <img
             src={imgurl}
             alt=""
-            className=" sm:h-[75vh] sm:max-h-none sm:w-auto w-screen max-h-[70vh]"
+            className=" sm:h-[75vh] m-auto sm:w-auto w-screen max-h-[70vh] pt-2"
           />
-          <p className="">
+          <p>
             Photo by{" "}
             <a href={namelink} className=" text-blue-500">
               {name}
@@ -59,8 +30,10 @@ function MainCard({
           <p>{about}</p>
         </div>
       </CardContent>
-      <CardFooter className="flex justify-center gap-5">
-        <Button disabled={isdisabled} onClick={prevFunc}>&lt;Prev</Button>
+      <CardFooter className="flex justify-center gap-5 pb-0">
+        <Button disabled={isdisabled} onClick={prevFunc}>
+          &lt;Prev
+        </Button>
         <Button onClick={nextFunc}>Next&gt;</Button>
       </CardFooter>
     </Card>
