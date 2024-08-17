@@ -5,7 +5,7 @@ function Collection() {
   return (
     <>
       <NavMenu />
-      <div>Favorites</div>
+      <div>Collection</div>
     </>
   );
 }
