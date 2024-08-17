@@ -1,10 +1,10 @@
 import { Sheet, SheetTrigger, SheetContent } from "../../components/ui/sheet";
 import { Button } from "../../components/ui/button";
 import * as React from "react";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { Input } from "../../components/ui/input";
 
-export default function Component({ setRand, search }) {
+export default function Component({ setRand = false, search = false }) {
   const [heartcolor, setHeartColor] = React.useState("none");
   const [colcolor, setcolcolor] = React.useState(false);
   return (
@@ -66,18 +66,22 @@ export default function Component({ setRand, search }) {
           </SheetContent>
         </Sheet>
       </div>
-      <div className="relative flex flex-1 md:left-24 sm:max-w-md">
-        <SearchIcon className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
-        <Input
-          type="search"
-          placeholder="Search..."
-          className="w-full rounded-lg bg-background pl-8"
-          onChange={(event) => setRand(event.target.value)}
-        />
-        <Button type="submit" onClick={search}>
-          Search
-        </Button>
-      </div>
+      {search ? (
+        <div className="relative flex flex-1 md:left-24 sm:max-w-md">
+          <SearchIcon className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
+          <Input
+            type="search"
+            placeholder="Search..."
+            className="w-full rounded-lg bg-background pl-8"
+            onChange={(event) => setRand(event.target.value)}
+          />
+          <Button type="submit" onClick={search}>
+            Search
+          </Button>
+        </div>
+      ) : (
+        <></>
+      )}
       <div className="hidden sm:flex items-center gap-4">
         <NavLink
           to="/"

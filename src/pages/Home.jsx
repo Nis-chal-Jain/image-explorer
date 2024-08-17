@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
-import NavMenu from "./components/NavMenu";
-import MainCard from "./components/MainCard";
-import loading from "./assets/loading.gif";
-import "./App.css";
+import NavMenu from "./../components/NavMenu";
+import MainCard from "./../components/MainCard";
+import loading from "./../assets/loading.gif";
 
 function App() {
   const [imgurlarr, setimgurlarr] = useState([]);
