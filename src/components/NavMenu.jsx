@@ -45,7 +45,7 @@ export default function Component({ setRand = false, search = false }) {
                 Favorites
               </NavLink>
               <NavLink
-                to="collection"
+                to="/collection"
                 className={({ isActive }) =>
                   `flex items-center gap-2 text-lg font-medium ${
                     isActive
