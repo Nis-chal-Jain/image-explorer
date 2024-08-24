@@ -54,6 +54,10 @@ function App() {
     await img();
     setcurr(imgurlarr.length);
   }
+  function addtobrowser(){
+    localStorage.setItem("fav", imgurl);
+    this.forceUpdate();
+  }
 
   return (
     <>
@@ -69,6 +73,7 @@ function App() {
           search={search}
           setRand={setRand}
           curr={curr}
+          addtobrowser={addtobrowser}
         />
       </div>
     </>
