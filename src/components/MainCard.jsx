@@ -1,9 +1,20 @@
 import { Button } from "../../components/ui/button";
 import { Card, CardContent, CardFooter } from "../../components/ui/card";
 import { useEffect, useState } from "react";
+import { HeartIcon, HeartFilledIcon } from "@radix-ui/react-icons";
 
-function MainCard({ curr, imgurl, namelink, name, about, nextFunc, prevFunc }) {
+function MainCard({
+  curr,
+  imgurl,
+  namelink,
+  name,
+  about,
+  nextFunc,
+  prevFunc,
+  addtobrowser,
+}) {
   const [isdisabled, setdisabled] = useState(" ");
+
   useEffect(() => {
     if (curr == 0) {
       setdisabled("disabled");
@@ -20,6 +31,13 @@ function MainCard({ curr, imgurl, namelink, name, about, nextFunc, prevFunc }) {
             alt=""
             className=" sm:h-[75vh] m-auto sm:w-auto w-screen max-h-[70vh] pt-2"
           />
+          <button onClick={addtobrowser}>
+            {localStorage.getItem("fav") == imgurl ? (
+              <HeartFilledIcon color="rgb(255,0,255)"/>
+            ) : (
+              <HeartIcon />
+            )}
+          </button>
           <p>
             Photo by{" "}
             <a href={namelink} className=" text-blue-500">
