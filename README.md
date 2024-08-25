@@ -1,8 +1,15 @@
-# React + Vite
+# Setup
+This guide will help you set up your own instance of ImageExplorer.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Prerequisites
+- nodejs
+- npm
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Steps
+- Clone this repository
+- Run `npm install` or `npm i` in the root directory
+- Setup env variables
+    - Generate your `Unsplash API key` (refer [Unsplash docs](https://unsplash.com/documentation#getting-started))
+    - Create a `.env` file in the root directory with following content
+    - `VITE_UNSPLASH_API_KEY="<UNSPLASH_API_KEY>"`     
+- Run `npm run dev`
