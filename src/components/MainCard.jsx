@@ -13,6 +13,10 @@ function MainCard({
   prevFunc,
   addtobrowser,
 }) {
+  const [seed, setSeed] = useState(1);
+  function reset(){
+    setSeed(Math.random());
+  }
   const [isdisabled, setdisabled] = useState(" ");
 
   useEffect(() => {
@@ -31,12 +35,14 @@ function MainCard({
             alt=""
             className=" sm:h-[75vh] m-auto sm:w-auto w-screen max-h-[70vh] pt-2"
           />
-          <button onClick={addtobrowser}>
-            {localStorage.getItem("fav") == imgurl ? (
-              <HeartFilledIcon color="rgb(255,0,255)"/>
-            ) : (
-              <HeartIcon />
-            )}
+          <button key={seed} onClick={()=>{addtobrowser();reset()}}>
+            {localStorage.getItem("fav") == null ?
+              <HeartIcon /> :
+              localStorage.getItem("fav").includes(imgurl) ? (
+                <HeartFilledIcon color="rgb(255,0,255)" />
+              ) : (
+                <HeartIcon />
+              )}
           </button>
           <p>
             Photo by{" "}

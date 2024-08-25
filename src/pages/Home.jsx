@@ -54,9 +54,14 @@ function App() {
     await img();
     setcurr(imgurlarr.length);
   }
-  function addtobrowser(){
-    localStorage.setItem("fav", imgurl);
-    this.forceUpdate();
+  function addtobrowser() {
+    if (!localStorage.getItem("fav")) {
+      localStorage.setItem("fav", JSON.stringify([]));
+    }
+    let localarr = localStorage.getItem("fav");
+    localarr = JSON.parse(localarr)
+    localarr = [...localarr,imgurl]
+    localStorage.setItem("fav", JSON.stringify(localarr));
   }
 
   return (
