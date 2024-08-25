@@ -36,9 +36,9 @@ function MainCard({
             className=" sm:h-[75vh] m-auto sm:w-auto w-screen max-h-[70vh] pt-2"
           />
           <button key={seed} onClick={()=>{addtobrowser();reset()}}>
-            {localStorage.getItem("fav") == null ?
+            {localStorage.getItem("Favorites") == null ?
               <HeartIcon /> :
-              localStorage.getItem("fav").includes(imgurl) ? (
+              localStorage.getItem("Favorites").includes(imgurl) ? (
                 <HeartFilledIcon color="rgb(255,0,255)" />
               ) : (
                 <HeartIcon />

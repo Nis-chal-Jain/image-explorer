@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import NavMenu from "./../components/NavMenu";
 
 function Favorites() {
-  const [fav, setFav] = useState(JSON.parse(localStorage.getItem("fav")));
+  let fav =(JSON.parse(localStorage.getItem("Favorites")));
   return (
     <>
       <NavMenu />

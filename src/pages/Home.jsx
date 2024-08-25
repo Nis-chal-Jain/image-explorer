@@ -55,13 +55,13 @@ function App() {
     setcurr(imgurlarr.length);
   }
   function addtobrowser() {
-    if (!localStorage.getItem("fav")) {
-      localStorage.setItem("fav", JSON.stringify([]));
+    if (!localStorage.getItem("Favorites")) {
+      localStorage.setItem("Favorites", JSON.stringify([]));
     }
-    let localarr = localStorage.getItem("fav");
+    let localarr = localStorage.getItem("Favorites");
     localarr = JSON.parse(localarr)
     localarr = [...localarr,imgurl]
-    localStorage.setItem("fav", JSON.stringify(localarr));
+    localStorage.setItem("Favorites", JSON.stringify(localarr));
   }
 
   return (
