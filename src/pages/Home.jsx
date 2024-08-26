@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
+import { Toaster } from "../../components/ui/toaster"
 import NavMenu from "./../components/NavMenu";
 import MainCard from "./../components/MainCard";
 import loading from "./../assets/loading.gif";
+import { useToast } from "../../components/ui/use-toast"
 
 function App() {
   const [imgurlarr, setimgurlarr] = useState([]);
@@ -13,6 +15,7 @@ function App() {
   const [rand, setRand] = useState("");
   const [about, setabout] = useState("");
   const randRequesturl = `https://api.unsplash.com/photos/random?client_id=${unsplashAPIKey}&query=${rand}`;
+  const { toast } = useToast()
 
   useEffect(() => {
     img();
@@ -60,8 +63,20 @@ function App() {
     }
     let localarr = localStorage.getItem("Favorites");
     localarr = JSON.parse(localarr)
-    localarr = [...localarr,imgurl]
-    localStorage.setItem("Favorites", JSON.stringify(localarr));
+    if (localarr.includes(imgurl)) {
+      localarr = localarr.filter((data) => { return data !== imgurl })
+      localStorage.setItem("Favorites", JSON.stringify(localarr));
+      toast({
+        description: "Removed from favorites",
+      })
+    }
+    else {
+      localarr = [...localarr, imgurl]
+      localStorage.setItem("Favorites", JSON.stringify(localarr));
+      toast({
+        description: "Added to favorites",
+      })
+    }
   }
 
   return (
@@ -81,6 +96,7 @@ function App() {
           addtobrowser={addtobrowser}
         />
       </div>
+      <Toaster />
     </>
   );
 }

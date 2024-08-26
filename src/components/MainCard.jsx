@@ -14,7 +14,7 @@ function MainCard({
   addtobrowser,
 }) {
   const [seed, setSeed] = useState(1);
-  function reset(){
+  function reset() {
     setSeed(Math.random());
   }
   const [isdisabled, setdisabled] = useState(" ");
@@ -35,13 +35,15 @@ function MainCard({
             alt=""
             className=" sm:h-[75vh] m-auto sm:w-auto w-screen max-h-[70vh] pt-2"
           />
-          <button key={seed} onClick={()=>{addtobrowser();reset()}}>
+          <button key={seed} onClick={() => {
+            addtobrowser(); reset(); 
+          }}>
             {localStorage.getItem("Favorites") == null ?
-              <HeartIcon /> :
+              <HeartIcon className="w-[30px] h-[30px] pt-1" /> :
               localStorage.getItem("Favorites").includes(imgurl) ? (
-                <HeartFilledIcon color="rgb(255,0,255)" />
+                <HeartFilledIcon className="w-[30px] h-[30px] pt-1" color="rgb(255,0,255)" />
               ) : (
-                <HeartIcon />
+                <HeartIcon className="w-[30px] h-[30px] pt-1" />
               )}
           </button>
           <p>
@@ -61,6 +63,7 @@ function MainCard({
         <Button onClick={nextFunc}>Next&gt;</Button>
       </CardFooter>
     </Card>
+
   );
 }
 
